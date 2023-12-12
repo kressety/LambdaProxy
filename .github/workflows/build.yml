@@ -10,10 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build proxy for ${{ github.event.inputs.domain }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4.1.1
     - name: Set up Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v5.0.0
       with:
         go-version: '1.17'
     - name: Build
@@ -22,7 +23,7 @@ jobs:
     - name: Zip the Build
       run: zip main.zip main scf_bootstrap
     - name: Upload ZIP Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.1.3
       with:
-        name: main.zip
+        name: main
         path: main.zip
