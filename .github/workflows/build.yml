@@ -20,10 +20,8 @@ jobs:
     - name: Build
       run: |
         TARGET_URL=${{ github.event.inputs.domain }} GOOS=linux GOARCH=amd64 go build -o main main.go
-    - name: Zip the Build
-      run: zip main.zip main scf_bootstrap
     - name: Upload ZIP Artifact
       uses: actions/upload-artifact@v3.1.3
       with:
         name: main
-        path: main.zip
+        path: main
